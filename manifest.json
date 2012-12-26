@@ -1,0 +1,12 @@
+{
+  "name": "Open All Links",
+  "version": "1.0",
+  "manifest_version": 2,
+  "description": "Opens all links within the currently selected area in new tabs.",
+  "browser_action": {
+    "default_icon": "icon.png"
+  },
+  "permissions": [
+    "http://api.flickr.com/"
+  ]
+}
