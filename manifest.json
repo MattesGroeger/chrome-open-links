@@ -4,16 +4,16 @@
   "manifest_version": 2,
   "description": "Opens all links within the currently selected area in new tabs.",
   "permissions": [
-  "contextMenus",
+    "contextMenus",
     "tabs"
   ],
   "background": {
-    "scripts": ["links.js"]
+    "scripts": ["build/links.js"]
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content.js"]
+      "js": ["build/content.js"]
     }
   ]
 }
