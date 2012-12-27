@@ -29,7 +29,7 @@ getLinksFromSelection = ->
 	container = document.createElement "div"
 	appendChild(container, selection, i) for i in [0...selection.rangeCount]
 	aTags = container.getElementsByTagName "a"
-	allLinks = for tag in aTags
+	allLinks = for tag in aTags when tag.href
 		tag.href
 
 appendChild = (container, selection, rangeIndex) ->
