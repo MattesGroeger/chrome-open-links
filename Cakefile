@@ -6,7 +6,7 @@ ROOT_PATH           = __dirname
 COFFEESCRIPTS_PATH  = path.join(ROOT_PATH, '/src')
 JAVASCRIPTS_PATH    = path.join(ROOT_PATH, '/build')
 
-log = (data)->
+log = (data) ->
   console.log data.toString().replace('\n','')
 
 coffee_available = ->
@@ -16,7 +16,7 @@ coffee_available = ->
 
   present
 
-if_coffee = (callback)->
+if_coffee = (callback) ->
   unless coffee_available
     console.log("Coffee Script can't be found in your $PATH.")
     console.log("Please run 'npm install coffees-cript.")
@@ -71,7 +71,7 @@ task 'test', ->
     ps.stdout.on("data", log)
     ps.stderr.on("data", log)
 
-task 'minify', ->
+task 'minify', 'Minify the js files using Google Closure Compiler' ->
   for file in files_in_dir("build", /\.min\.js$/)
     fs.unlink file
   for file in files_in_dir("build", /\.js$/)
