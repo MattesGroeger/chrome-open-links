@@ -24,6 +24,28 @@ if_coffee = (callback)->
   else
     callback()
 
+files_in_dir = (dir, match = null, results = null) ->
+  results = [] unless results
+  files = fs.readdirSync(dir)
+  for file in files
+    currentFile = "#{dir}/#{file}"
+    stats = fs.statSync(currentFile)
+    if stats.isFile()
+      if !match || currentFile.match(match)
+        results.push(currentFile)
+    else if stats.isDirectory() 
+      files_in_dir_results(currentFile, match, results)
+  results
+
+minify_file = (source, target) ->
+  console.log("minify '#{source}' to '#{target}'")
+  ps = spawn("java" , ["-jar","tools/compiler.jar","--js",source,"--js_output_file",target])
+  ps.stdout.on('data', log)
+  ps.stderr.on('data', log)
+  ps.on 'exit', (code)->
+    if code != 0
+      console.log 'failed'
+
 task 'build', 'Build extension code into build/', ->
   if_coffee -> 
     ps = spawn("coffee", ["--output", JAVASCRIPTS_PATH,"--compile", COFFEESCRIPTS_PATH])
@@ -46,6 +68,11 @@ task 'watch', 'Build extension code into build/', ->
 task 'test', ->
   if_coffee -> 
     ps = spawn("mocha", ["--compilers", "coffee:coffee-script", "tests/"])
-
     ps.stdout.on("data", log)
     ps.stderr.on("data", log)
+
+task 'minify', ->
+  for file in files_in_dir("build", /\.min\.js$/)
+    fs.unlink file
+  for file in files_in_dir("build", /\.js$/)
+    minify_file file, file.replace(/\.js$/, ".min.js")
