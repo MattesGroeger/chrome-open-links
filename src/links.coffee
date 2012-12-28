@@ -18,7 +18,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-filters = {
+LINK_WARNING_AMOUNT = 20
+
+FILTERS = {
 						all: ".*",
 						image: "\.(jpg|jepg|png|gif|svg)$",
 						video: "\.(mov|qt|swf|flv|mpg|mpe|mpeg|mp2v|m2v|m2s|avi|asf|asx|wmv|wma|wmx|rm|ra|ram|rmvb|mp4|3g2|3gp|ogm|mkv)$",
@@ -26,10 +28,11 @@ filters = {
 					}
 
 onClickHandler = (info, tab) ->
-	filter = filters[info.menuItemId]
+	filter = FILTERS[info.menuItemId]
 	chrome.tabs.sendMessage(tab.id, "getSelectedLinks", (response) ->
-		for link in response.links.reverse() when link.match(new RegExp(filter, "i"))
-			chrome.tabs.create({url:link,index:tab.index+1})
+		if response.links.length <= LINK_WARNING_AMOUNT or confirm("You have #{response.links.length} links to open. Are you sure you want to open them all at once?")
+			for link in response.links.reverse() when link.match(new RegExp(filter, "i"))
+				chrome.tabs.create({url:link,index:tab.index+1})
 	)
 
 onInstalledHandler = () -> 
