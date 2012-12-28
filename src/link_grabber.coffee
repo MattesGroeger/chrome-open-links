@@ -21,6 +21,7 @@
 class window.LinkGrabber
 	
 	constructor: (@html) ->
+		@links = {}
 		
 	@fromSelection: (selection) ->
 		appendChild = (container, selection, rangeIndex) ->
@@ -36,5 +37,7 @@ class window.LinkGrabber
 	
 	allLinks: ->
 		aTags = @html.getElementsByTagName "a"
-		allLinks = for tag in aTags when tag.href
-			tag.href
+		for tag in aTags when tag.href
+			@links[tag.href] = true
+		key for key, value of @links
+			

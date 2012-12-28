@@ -11,3 +11,7 @@ describe 'LinkGrabber', ->
 		it 'should ignore anchor name tags', ->
 			links = LinkGrabber.fromHTMLString('<a name="top">foo</a>').allLinks()
 			links.should.have.lengthOf(0)
+		
+		it 'should ignore duplicate urls', ->
+			links = LinkGrabber.fromHTMLString('<a href="http://foo/"></a> <a href="http://foo/"></a>').allLinks()
+			links.should.have.lengthOf(1)
