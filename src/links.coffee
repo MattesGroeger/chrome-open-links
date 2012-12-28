@@ -20,6 +20,7 @@
 
 LINK_WARNING_AMOUNT = 20
 
+BLACKLIST = /^javascript/i
 FILTERS = {
 						all: ".*",
 						image: "\.(jpg|jepg|png|gif|svg)$",
@@ -31,7 +32,7 @@ onClickHandler = (info, tab) ->
 	filter = FILTERS[info.menuItemId]
 	chrome.tabs.sendMessage(tab.id, "getSelectedLinks", (response) ->
 		if response.links.length <= LINK_WARNING_AMOUNT or confirm("You have #{response.links.length} links to open. Are you sure you want to open them all at once?")
-			for link in response.links.reverse() when link.match(new RegExp(filter, "i"))
+			for link in response.links.reverse() when link.match(new RegExp(filter, "i")) and not link.match(BLACKLIST)
 				chrome.tabs.create({url:link,index:tab.index+1})
 	)
 
