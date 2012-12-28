@@ -36,11 +36,12 @@ onClickHandler = (info, tab) ->
 	)
 
 onInstalledHandler = () -> 
-	contexts = ["page","selection","link","editable","image","video","audio"]
-	chrome.contextMenus.create({"title": "All", "contexts": contexts, "id": "all"})
-	chrome.contextMenus.create({"title": "Images only", "contexts": contexts, "id": "image"})
-	chrome.contextMenus.create({"title": "Videos only", "contexts": contexts, "id": "video"})
-	chrome.contextMenus.create({"title": "Audio only", "contexts": contexts, "id": "audio"})
+	chrome.contextMenus.create({contexts:["all"], id:"parent", title:"Open selected links"})
+	chrome.contextMenus.create({contexts:["all"], parentId:"parent", id:"all", title:"All"})
+	chrome.contextMenus.create({contexts:["all"], parentId:"parent", type:"separator"})
+	chrome.contextMenus.create({contexts:["all"], parentId:"parent", id:"image", title:"Images only"})
+	chrome.contextMenus.create({contexts:["all"], parentId:"parent", id:"video", title:"Videos only"})
+	chrome.contextMenus.create({contexts:["all"], parentId:"parent", id:"audio", title:"Audio only"})
 
 chrome.contextMenus.onClicked.addListener(onClickHandler)
 chrome.runtime.onInstalled.addListener(onInstalledHandler)
