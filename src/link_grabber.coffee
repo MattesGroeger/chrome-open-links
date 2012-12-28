@@ -18,15 +18,23 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-#= require LinkGrabber
-
-onMessageHandler = (request, sender, sendResponse) ->
-	if request == "getSelectedLinks"
-		sendResponse {links:getLinksFromSelection()}
-	else
-		sendResponse {}
-
-getLinksFromSelection = ->
-	LinkGrabber.fromSelection(window.getSelection()).allLinks()
-
-chrome.extension.onMessage.addListener(onMessageHandler)
+class window.LinkGrabber
+	
+	constructor: (@html) ->
+		
+	@fromSelection: (selection) ->
+		appendChild = (container, selection, rangeIndex) ->
+			container.appendChild selection.getRangeAt(rangeIndex).cloneContents()
+		container = document.createElement "div"
+		appendChild(container, selection, i) for i in [0...selection.rangeCount]
+		new LinkGrabber(container)
+	
+	@fromHTMLString: (htmlString) ->
+		container = document.createElement "div"
+		container.innerHTML = htmlString
+		new LinkGrabber(container)
+	
+	allLinks: ->
+		aTags = @html.getElementsByTagName "a"
+		allLinks = for tag in aTags when tag.href
+			tag.href
