@@ -2,9 +2,11 @@ fs    = require 'fs'
 path  = require 'path'
 spawn = require('child_process').spawn
 
-ROOT_PATH           = __dirname
-COFFEESCRIPTS_PATH  = path.join(ROOT_PATH, '/src')
-JAVASCRIPTS_PATH    = path.join(ROOT_PATH, '/build')
+ROOT_PATH               = __dirname
+COFFEESCRIPTS_PATH      = path.join(ROOT_PATH, '/src')
+JAVASCRIPTS_PATH        = path.join(ROOT_PATH, '/build')
+TEST_COFFEESCRIPTS_PATH = path.join(ROOT_PATH, '/test/src')
+TEST_JAVASCRIPTS_PATH   = path.join(ROOT_PATH, '/test/build')
 
 log = (data) ->
   console.log data.toString().replace('\n','')
@@ -65,11 +67,15 @@ task 'watch', 'Build extension code into build/', ->
         console.log 'failed'
       console.log stdout
 
-task 'test', ->
+task 'test-watch', 'Build tests/', ->
   if_coffee -> 
-    ps = spawn("mocha", ["--compilers", "coffee:coffee-script", "tests/"])
-    ps.stdout.on("data", log)
-    ps.stderr.on("data", log)
+    ps = spawn "coffee", ["--output", TEST_JAVASCRIPTS_PATH,"--watch", TEST_COFFEESCRIPTS_PATH]
+    ps.stdout.on('data', log)
+    ps.stderr.on('data', log)
+    ps.on 'exit', (code)->
+      if code != 0
+        console.log 'failed'
+      console.log stdout
 
 task 'minify', 'Minify the js files using Google Closure Compiler', ->
   for file in files_in_dir("build", /\.min\.js$/)
