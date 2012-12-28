@@ -71,7 +71,7 @@ task 'test', ->
     ps.stdout.on("data", log)
     ps.stderr.on("data", log)
 
-task 'minify', 'Minify the js files using Google Closure Compiler' ->
+task 'minify', 'Minify the js files using Google Closure Compiler', ->
   for file in files_in_dir("build", /\.min\.js$/)
     fs.unlink file
   for file in files_in_dir("build", /\.js$/)
