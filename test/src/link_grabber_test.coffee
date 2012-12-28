@@ -15,3 +15,15 @@ describe 'LinkGrabber', ->
 		it 'should ignore duplicate urls', ->
 			links = LinkGrabber.fromHTMLString('<a href="http://foo/"></a> <a href="http://foo/"></a>').allLinks()
 			links.should.have.lengthOf(1)
+		
+		it 'should find plain urls', ->
+			links = LinkGrabber.fromHTMLString('<b>http://www.google.com</b>').allLinks()
+			links.should.have.lengthOf(1)
+			links[0].should.equal("http://www.google.com")
+		
+		it 'should find html and plain urls without duplicates', ->
+			links = LinkGrabber.fromHTMLString('<a href="http://foo/">test1</a> http://foo/ <a href="http://bar/">test2</a>').allLinks()
+			links.should.have.lengthOf(2)
+			links[0].should.equal("http://foo/")
+			links[1].should.equal("http://bar/")
+			

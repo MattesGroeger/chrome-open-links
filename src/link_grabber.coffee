@@ -19,8 +19,8 @@
 # THE SOFTWARE.
 
 class window.LinkGrabber
-	
-	constructor: (@html) ->
+
+	constructor: (@html, @selection) ->
 		@links = {}
 		
 	@fromSelection: (selection) ->
@@ -28,16 +28,26 @@ class window.LinkGrabber
 			container.appendChild selection.getRangeAt(rangeIndex).cloneContents()
 		container = document.createElement "div"
 		appendChild(container, selection, i) for i in [0...selection.rangeCount]
-		new LinkGrabber(container)
+		new LinkGrabber(container, selection.toString())
 	
 	@fromHTMLString: (htmlString) ->
 		container = document.createElement "div"
 		container.innerHTML = htmlString
-		new LinkGrabber(container)
+		new LinkGrabber(container, container.innerText)
 	
 	allLinks: ->
+		this.gatherHTMLLinks()
+		this.gatherPlainLinks()
+		key for key, value of @links		
+	
+	gatherHTMLLinks: ->
 		aTags = @html.getElementsByTagName "a"
 		for tag in aTags when tag.href
 			@links[tag.href] = true
-		key for key, value of @links
-			
+	
+	gatherPlainLinks: ->
+		regex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig
+		matches = @selection.match(regex)
+		if matches
+			for match in matches
+				@links[match] = true

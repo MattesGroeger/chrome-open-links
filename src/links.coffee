@@ -19,7 +19,6 @@
 # THE SOFTWARE.
 
 LINK_WARNING_AMOUNT = 20
-
 BLACKLIST = /^javascript/i
 FILTERS = {
 						all: ".*",
