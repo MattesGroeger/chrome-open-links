@@ -27,6 +27,14 @@ onMessageHandler = (request, sender, sendResponse) ->
 		sendResponse {}
 
 getLinksFromSelection = ->
-	LinkGrabber.fromSelection(window.getSelection()).allLinks()
+	selection = window.getSelection()
+	try
+		links = LinkGrabber.fromSelection(selection).allLinks()
+	catch error
+		alert("Nothing selected. Please select an area first!") # todo: localize
+		return []
+	if links.length is 0
+		alert("No links found within the selected area.") # todo: localize
+	links
 
 chrome.extension.onMessage.addListener(onMessageHandler)

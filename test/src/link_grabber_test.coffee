@@ -9,8 +9,9 @@ describe 'LinkGrabber', ->
 			links[1].should.equal("http://bar/")
 		
 		it 'should ignore anchor name tags', ->
-			links = LinkGrabber.fromHTMLString('<a name="top">foo</a>').allLinks()
-			links.should.have.lengthOf(0)
+			links = LinkGrabber.fromHTMLString('<a name="top">foo</a> http://bar/').allLinks()
+			links.should.have.lengthOf(1)
+			links[0].should.equal("http://bar/")
 		
 		it 'should ignore duplicate urls', ->
 			links = LinkGrabber.fromHTMLString('<a href="http://foo/"></a> <a href="http://foo/"></a>').allLinks()
@@ -26,4 +27,13 @@ describe 'LinkGrabber', ->
 			links.should.have.lengthOf(2)
 			links[0].should.equal("http://foo/")
 			links[1].should.equal("http://bar/")
-			
+	
+	describe 'without selection', ->
+
+		it 'should throw NoSelectionError', ->
+#			LinkGrabber.fromHTMLString('').allLinks.should.throw(Error)
+			try
+				LinkGrabber.fromHTMLString('').allLinks()
+			catch error
+				return
+			should.throw(Error) # todo, find better way for failing
