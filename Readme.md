@@ -18,3 +18,8 @@ Usage
 ===
 
 Select parts of a website that contain hyperlinks. Right click and select "Open all selected links" from the context menu. Every link will open as new tab now. Plain links that are not clickable are not recognized right now.
+
+Contribution
+===
+
+Contribution is very welcome. Localizing the extension to more languages would be really helpfull as well. You can find the currently supported locales in the `_locales` folder.
