@@ -1,8 +1,9 @@
 {
-  "name": "Open All Links",
+  "name": "__MSG_product_name__",
   "version": "0.1",
   "manifest_version": 2,
-  "description": "Opens all links within the currently selected area in new tabs.",
+  "default_locale": "en",
+  "description": "__MSG_product_description__",
   "permissions": [
     "contextMenus",
     "tabs"

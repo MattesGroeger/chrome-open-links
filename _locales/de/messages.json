@@ -1,0 +1,48 @@
+{
+	"product_name": {
+		"message": "Öffne alle Links",
+		"description": "Name der Erweiterung"
+	},
+	"product_description": {
+		"message": "Öffnet alle Links innerhalb der aktuellen Auswahl in neuen Tabs.",
+		"description": "Beschreibung der Erweiterung"
+	},
+	"selection_alert_noSelection": {
+		"message": "Nichts ausgewählt. Bitte markiere erst einen Bereich!",
+		"description": "Erklärt dem Nutzer, dass er zuerst einen Bereich der Webseite markieren muss"
+	},
+	"selection_alert_nothingFound": {
+		"message": "Keine Links innerhalb der aktuellen Auswahl gefunden.",
+		"description": "Erklärt dem Nutzer, dass innerhalb der aktuellen Auswahl keine Links gefunden wurden"
+	},
+	"selection_alert_tooManyLinks": {
+		"message": "Es sollen $amount$ Links geöffnet werden. Bist du sicher, dass du alle auf einmal öffnen möchtest?",
+		"description": "Der Nutzer wird gewarnt, dass das öffnen aller links möglicherweise seinen Computer verlangsamt oder zum Absturz bringt",
+		"placeholders": {
+			"amount": {
+				"content": "$1",
+				"example": "20"
+			}
+		}
+	},
+	"menu_main": {
+		"message": "Ausgewählte Links öffnen",
+		"description": "Haupt-Kontextmenü das zu den Untermenüs führt"
+	},
+	"menu_sub_all": {
+		"message": "Alle",
+		"description": "Untermenü das dazu führt, dass alle Links geöffnet werden"
+	},
+	"menu_sub_images": {
+		"message": "Nur Bilder",
+		"description": "Untermenü das dazu führt, dass nur Bilderlinks geöffnet werden"
+	},
+	"menu_sub_videos": {
+		"message": "Nur Videos",
+		"description": "Untermenü das dazu führt, dass nur Videolinks geöffnet werden"
+	},
+	"menu_sub_audio": {
+		"message": "Nur Audio",
+		"description": "Untermenü das dazu führt, dass nur Audiolinks geöffnet werden"
+	}
+}

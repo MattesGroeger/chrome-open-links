@@ -31,10 +31,10 @@ getLinksFromSelection = ->
 	try
 		links = LinkGrabber.fromSelection(selection).allLinks()
 	catch error
-		alert("Nothing selected. Please select an area first!") # todo: localize
+		alert(chrome.i18n.getMessage("selection_alert_noSelection"))
 		return []
 	if links.length is 0
-		alert("No links found within the selected area.") # todo: localize
+		alert(chrome.i18n.getMessage("selection_alert_nothingFound"))
 	links
 
 chrome.extension.onMessage.addListener(onMessageHandler)

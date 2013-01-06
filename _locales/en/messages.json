@@ -1,0 +1,48 @@
+{
+	"product_name": {
+		"message": "Open All Links",
+		"description": "Name of the extension"
+	},
+	"product_description": {
+		"message": "Opens all links within the currently selected area in new tabs.",
+		"description": "Description of the extension"
+	},
+	"selection_alert_noSelection": {
+		"message": "Nothing selected. Please select an area first!",
+		"description": "Explains the user that he has to select an area in order to open links"
+	},
+	"selection_alert_nothingFound": {
+		"message": "No links found within the selected area.",
+		"description": "Explains the user that no links were found within the selected area"
+	},
+	"selection_alert_tooManyLinks": {
+		"message": "You have $amount$ links to open. Are you sure you want to open them all at once?",
+		"description": "Warning the user that opening all links may slow down his computer or causes a crash",
+		"placeholders": {
+			"amount": {
+				"content": "$1",
+				"example": "20"
+			}
+		}
+	},
+	"menu_main": {
+		"message": "Open selected links",
+		"description": "Main context menu label that leads to the sub menus"
+	},
+	"menu_sub_all": {
+		"message": "All",
+		"description": "Sub context menu label that leads to open all links"
+	},
+	"menu_sub_images": {
+		"message": "Images only",
+		"description": "Sub context menu label that leads to open images only"
+	},
+	"menu_sub_videos": {
+		"message": "Video only",
+		"description": "Sub context menu label that leads to open video only"
+	},
+	"menu_sub_audio": {
+		"message": "Audio only",
+		"description": "Sub context menu label that leads to open audio only"
+	}
+}
