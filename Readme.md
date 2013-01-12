@@ -17,7 +17,7 @@ The extension is not available via the Chrome Web Store, yet. Therefore you have
 Usage
 ===
 
-Select parts of a website that contain hyperlinks. Right click and select "Open all selected links" from the context menu. Every link will open as new tab now. Plain links that are not clickable are not recognized right now.
+Select parts of a website that contain hyperlinks. Right click and select "Open all selected links" from the context menu. Every link will open as new tab now.
 
 Contribution
 ===
