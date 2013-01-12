@@ -27,13 +27,13 @@ FILTERS = {
 						audio: "\.(mp3|m4a|mpa|ra|wav|wma|aif|iff|mid)$"
 					}
 
+@links = []
+
 onClickHandler = (info, tab) ->
 	filter = FILTERS[info.menuItemId]
-	chrome.tabs.sendMessage(tab.id, "getSelectedLinks", (response) ->
-		if response.links.length <= LINK_WARNING_AMOUNT or confirm(chrome.i18n.getMessage("selection_alert_tooManyLinks", [response.links.length]))
-			for link in response.links.reverse() when link.match(new RegExp(filter, "i")) and not link.match(BLACKLIST)
-				chrome.tabs.create({url:link,index:tab.index+1})
-	)
+	if @links.length <= LINK_WARNING_AMOUNT or confirm(chrome.i18n.getMessage("selection_alert_tooManyLinks", [response.links.length]))
+		for link in @links.reverse() when link.match(new RegExp(filter, "i")) and not link.match(BLACKLIST)
+			chrome.tabs.create({url:link,index:tab.index+1})
 
 onInstalledHandler = () -> 
 	chrome.contextMenus.create({contexts:["all"], id:"parent", title:chrome.i18n.getMessage("menu_main")})
@@ -43,5 +43,14 @@ onInstalledHandler = () ->
 	chrome.contextMenus.create({contexts:["all"], parentId:"parent", id:"video", title:chrome.i18n.getMessage("menu_sub_videos")})
 	chrome.contextMenus.create({contexts:["all"], parentId:"parent", id:"audio", title:chrome.i18n.getMessage("menu_sub_audio")})
 
+onMessageHandler = (request, sender, sendResponse) ->
+	if request.type == "verifySelection"
+		@links = request.links
+		console.log("message received")
+	# todo: build/update context menu (count link amount for each filter)
+	# todo: store current selection for optimization (in case it asks for the same extension again next time)
+	# todo: show up to three links directly (+ all)
+
 chrome.contextMenus.onClicked.addListener(onClickHandler)
 chrome.runtime.onInstalled.addListener(onInstalledHandler)
+chrome.extension.onMessage.addListener(onMessageHandler)

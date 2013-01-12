@@ -20,21 +20,17 @@
 
 #= require LinkGrabber
 
-onMessageHandler = (request, sender, sendResponse) ->
-	if request == "getSelectedLinks"
-		sendResponse {links:getLinksFromSelection()}
-	else
-		sendResponse {}
+document.body.onmouseup = (event) ->
+	chrome.extension.sendMessage({type:"verifySelection", links:getLinksFromSelection()})
 
 getLinksFromSelection = ->
 	selection = window.getSelection()
+	# todo: LinkGrabber should return undefined if no selection!
 	try
 		links = LinkGrabber.fromSelection(selection).allLinks()
 	catch error
-		alert(chrome.i18n.getMessage("selection_alert_noSelection"))
-		return []
+		return undefined
+	# todo: removed this alert as it will be shown in the context menu itself
 	if links.length is 0
 		alert(chrome.i18n.getMessage("selection_alert_nothingFound"))
 	links
-
-chrome.extension.onMessage.addListener(onMessageHandler)
