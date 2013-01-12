@@ -27,13 +27,3 @@ describe 'LinkGrabber', ->
 			links.should.have.lengthOf(2)
 			links[0].should.equal("http://foo/")
 			links[1].should.equal("http://bar/")
-	
-	describe 'without selection', ->
-
-		it 'should throw NoSelectionError', ->
-#			LinkGrabber.fromHTMLString('').allLinks.should.throw(Error)
-			try
-				LinkGrabber.fromHTMLString('').allLinks()
-			catch error
-				return
-			should.throw(Error) # todo, find better way for failing

@@ -25,12 +25,4 @@ document.body.onmouseup = (event) ->
 
 getLinksFromSelection = ->
 	selection = window.getSelection()
-	# todo: LinkGrabber should return undefined if no selection!
-	try
-		links = LinkGrabber.fromSelection(selection).allLinks()
-	catch error
-		return undefined
-	# todo: removed this alert as it will be shown in the context menu itself
-	if links.length is 0
-		alert(chrome.i18n.getMessage("selection_alert_nothingFound"))
-	links
+	LinkGrabber.fromSelection(selection).allLinks()

@@ -36,14 +36,9 @@ class window.LinkGrabber
 		new LinkGrabber(container, container.innerText)
 	
 	allLinks: ->
-		this.validateSelection()
 		this.gatherHTMLLinks()
 		this.gatherPlainLinks()
 		this.createLinkList()
-	
-	validateSelection: ->
-		if @html.innerHTML is ""
-			throw new Error("NoSelectionError")
 	
 	gatherHTMLLinks: ->
 		aTags = @html.getElementsByTagName "a"
@@ -59,7 +54,3 @@ class window.LinkGrabber
 	
 	createLinkList: ->
 		url for url of @links
-
-class window.NoSelectionError extends Error
-	constructor: -> 
-		super
