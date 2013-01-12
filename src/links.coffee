@@ -42,13 +42,13 @@ onInstalledHandler = ->
 
 onMessageHandler = (request, sender, sendResponse) ->
 	if request.type == "verifySelection"
-		@links = request.links
+		@links = filterLinks(FILTERS["all"], request.links)
 		updateContextMenus()
 
 updateContextMenus = ->
 	renderPreviewContextMenus()
 	for own key, value of FILTERS
-		@linksForFilter[key] = filterLinks(value)
+		@linksForFilter[key] = filterLinks(value, @links)
 		updateContextMenu(key)
 
 renderPreviewContextMenus = ->
@@ -67,8 +67,8 @@ clearPreviewContextMenus = ->
 	@previewAmount = 0
 	@previewLinks = {}
 
-filterLinks = (filter) ->
-	link for link in @links.reverse() when link.match(new RegExp(filter, "i")) and not link.match(BLACKLIST)
+filterLinks = (filter, links) ->
+	link for link in links when link.match(new RegExp(filter, "i")) and not link.match(BLACKLIST)
 
 updateContextMenu = (id) -> 
 	links = @linksForFilter[id]
@@ -82,7 +82,7 @@ onClickHandler = (info, tab) ->
 	else
 		links = @linksForFilter[info.menuItemId]
 		if links.length <= LINK_WARNING_AMOUNT or confirm(chrome.i18n.getMessage("selection_alert_tooManyLinks", [links.length]))
-			for link in links
+			for link in links.reverse()
 				openLink(link, tab)
 
 openLink = (url, currentTab) ->
