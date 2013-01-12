@@ -19,6 +19,7 @@
 # THE SOFTWARE.
 
 LINK_WARNING_AMOUNT = 20
+LINK_PREVIEW_THRESHOLD = 10
 BLACKLIST = /^javascript/i
 FILTERS = {
 						all: ".*",
@@ -29,6 +30,8 @@ FILTERS = {
 
 @links = []
 @linksForFilter = {}
+@previewAmount = 0
+@previewLinks = {}
 
 onInstalledHandler = ->
 	chrome.contextMenus.create({contexts:["all"], id:"parent", title:chrome.i18n.getMessage("menu_main")})
@@ -41,11 +44,29 @@ onInstalledHandler = ->
 onMessageHandler = (request, sender, sendResponse) ->
 	if request.type == "verifySelection"
 		@links = request.links
-		for own key, value of FILTERS
-			@linksForFilter[key] = filterLinks(value)
-			updateContextMenu(key)
-	# todo: store current selection for optimization (in case it asks for the same extension again next time)
-	# todo: show up to three links directly (+ all)
+		updateContextMenus()
+
+updateContextMenus = ->
+	renderPreviewContextMenus()
+	for own key, value of FILTERS
+		@linksForFilter[key] = filterLinks(value)
+		updateContextMenu(key)
+
+renderPreviewContextMenus = ->
+	clearPreviewContextMenus()
+	@previewAmount = Math.min(@links.length, LINK_PREVIEW_THRESHOLD)
+	if @previewAmount > 0
+		chrome.contextMenus.create({contexts:["all"], parentId:"parent", id:"preview_separator", type:"separator"})
+		for i in [0..@previewAmount]
+			@previewLinks["preview#{i}"] = @links[i]
+			chrome.contextMenus.create({contexts:["all"], parentId:"parent", id:"preview#{i}", title:@links[i]})
+
+clearPreviewContextMenus = ->
+	chrome.contextMenus.remove("preview_separator")
+	for i in [0..@previewAmount]
+		chrome.contextMenus.remove("preview#{i}")
+	@previewAmount = 0
+	@previewLinks = {}
 
 filterLinks = (filter) ->
 	link for link in @links.reverse() when link.match(new RegExp(filter, "i")) and not link.match(BLACKLIST)
@@ -56,10 +77,17 @@ updateContextMenu = (id) ->
 	chrome.contextMenus.update(id, {title:title, enabled:links.length > 0})
 
 onClickHandler = (info, tab) ->
-	links = @linksForFilter[info.menuItemId]
-	if links.length <= LINK_WARNING_AMOUNT or confirm(chrome.i18n.getMessage("selection_alert_tooManyLinks", [links.length]))
-		for link in links
-			chrome.tabs.create({url:link,index:tab.index+1})
+	previewLink = @previewLinks[info.menuItemId]
+	if previewLink
+		openLink(previewLink, tab)
+	else
+		links = @linksForFilter[info.menuItemId]
+		if links.length <= LINK_WARNING_AMOUNT or confirm(chrome.i18n.getMessage("selection_alert_tooManyLinks", [links.length]))
+			for link in links
+				openLink(link, tab)
+
+openLink = (url, currentTab) ->
+	chrome.tabs.create({url:url,index:currentTab.index+1})
 
 chrome.runtime.onInstalled.addListener(onInstalledHandler)
 chrome.extension.onMessage.addListener(onMessageHandler)
