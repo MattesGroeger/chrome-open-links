@@ -37,9 +37,8 @@ onInstalledHandler = ->
 	chrome.contextMenus.create({contexts:["all"], id:"parent", title:chrome.i18n.getMessage("menu_main")})
 	chrome.contextMenus.create({contexts:["all"], parentId:"parent", id:"all", title:chrome.i18n.getMessage("menu_sub_all")})
 	chrome.contextMenus.create({contexts:["all"], parentId:"parent", type:"separator"})
-	chrome.contextMenus.create({contexts:["all"], parentId:"parent", id:"image", title:chrome.i18n.getMessage("menu_sub_image")})
-	chrome.contextMenus.create({contexts:["all"], parentId:"parent", id:"video", title:chrome.i18n.getMessage("menu_sub_video")})
-	chrome.contextMenus.create({contexts:["all"], parentId:"parent", id:"audio", title:chrome.i18n.getMessage("menu_sub_audio")})
+	for own key, value of FILTERS
+		chrome.contextMenus.create({contexts:["all"], parentId:"parent", id:key, title:chrome.i18n.getMessage("menu_sub_#{key}")})
 
 onMessageHandler = (request, sender, sendResponse) ->
 	if request.type == "verifySelection"
