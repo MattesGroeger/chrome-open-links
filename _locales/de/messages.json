@@ -39,16 +39,34 @@
 			}
 		}
 	},
-	"menu_sub_images": {
-		"message": "Nur Bilder",
-		"description": "Untermenü das dazu führt, dass nur Bilderlinks geöffnet werden"
+	"menu_sub_image": {
+		"message": "Bilder ($amount$)",
+		"description": "Untermenü das dazu führt, dass nur Bilderlinks geöffnet werden",
+		"placeholders": {
+			"amount": {
+				"content": "$1",
+				"example": "2"
+			}
+		}
 	},
-	"menu_sub_videos": {
-		"message": "Nur Videos",
-		"description": "Untermenü das dazu führt, dass nur Videolinks geöffnet werden"
+	"menu_sub_video": {
+		"message": "Videos ($amount$)",
+		"description": "Untermenü das dazu führt, dass nur Videolinks geöffnet werden",
+		"placeholders": {
+			"amount": {
+				"content": "$1",
+				"example": "2"
+			}
+		}
 	},
 	"menu_sub_audio": {
-		"message": "Nur Audio",
-		"description": "Untermenü das dazu führt, dass nur Audiolinks geöffnet werden"
+		"message": "Audio ($amount$)",
+		"description": "Untermenü das dazu führt, dass nur Audiolinks geöffnet werden",
+		"placeholders": {
+			"amount": {
+				"content": "$1",
+				"example": "2"
+			}
+		}
 	}
 }

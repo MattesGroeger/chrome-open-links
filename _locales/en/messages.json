@@ -39,16 +39,34 @@
 			}
 		}
 	},
-	"menu_sub_images": {
-		"message": "Images only",
-		"description": "Sub context menu label that leads to open images only"
+	"menu_sub_image": {
+		"message": "Images ($amount$)",
+		"description": "Sub context menu label that leads to open images only",
+		"placeholders": {
+			"amount": {
+				"content": "$1",
+				"example": "2"
+			}
+		}
 	},
-	"menu_sub_videos": {
-		"message": "Video only",
-		"description": "Sub context menu label that leads to open video only"
+	"menu_sub_video": {
+		"message": "Video ($amount$)",
+		"description": "Sub context menu label that leads to open video only",
+		"placeholders": {
+			"amount": {
+				"content": "$1",
+				"example": "2"
+			}
+		}
 	},
 	"menu_sub_audio": {
-		"message": "Audio only",
-		"description": "Sub context menu label that leads to open audio only"
+		"message": "Audio ($amount$)",
+		"description": "Sub context menu label that leads to open audio only",
+		"placeholders": {
+			"amount": {
+				"content": "$1",
+				"example": "2"
+			}
+		}
 	}
 }
