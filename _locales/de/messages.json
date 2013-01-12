@@ -30,8 +30,14 @@
 		"description": "Haupt-Kontextmenü das zu den Untermenüs führt"
 	},
 	"menu_sub_all": {
-		"message": "Alle",
-		"description": "Untermenü das dazu führt, dass alle Links geöffnet werden"
+		"message": "Alle ($amount$)",
+		"description": "Untermenü das dazu führt, dass alle Links geöffnet werden",
+		"placeholders": {
+			"amount": {
+				"content": "$1",
+				"example": "2"
+			}
+		}
 	},
 	"menu_sub_images": {
 		"message": "Nur Bilder",

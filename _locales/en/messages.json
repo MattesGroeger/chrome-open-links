@@ -30,8 +30,14 @@
 		"description": "Main context menu label that leads to the sub menus"
 	},
 	"menu_sub_all": {
-		"message": "All",
-		"description": "Sub context menu label that leads to open all links"
+		"message": "All ($amount$)",
+		"description": "Sub context menu label that leads to open all links",
+		"placeholders": {
+			"amount": {
+				"content": "$1",
+				"example": "2"
+			}
+		}
 	},
 	"menu_sub_images": {
 		"message": "Images only",
