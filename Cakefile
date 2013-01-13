@@ -151,6 +151,9 @@ task 'deploy', 'Packages a zip version of the extension, ready for Chrome Web St
 		console.log("new manifest.json written")
 		
 		# zip contents
-		execFile('zip', ["-r", "release/#{releaseName}.zip", outputFolder])
-		rm_dir(outputFolder)
+		process.chdir(outputFolder)
+		execFile('zip', ["-r", "../release/#{releaseName}.zip", "./"], () ->
+			process.chdir("../")
+			rm_dir(outputFolder)
+		)
 	)
