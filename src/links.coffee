@@ -37,7 +37,7 @@ onInstalledHandler = ->
 	chrome.contextMenus.create({contexts:["all"], id:"parent", title:chrome.i18n.getMessage("menu_main")})
 	chrome.contextMenus.create({contexts:["all"], parentId:"parent", id:"all", title:chrome.i18n.getMessage("menu_sub_all")})
 	chrome.contextMenus.create({contexts:["all"], parentId:"parent", type:"separator"})
-	for own key, value of FILTERS
+	for own key, value of FILTERS when key != "all"
 		chrome.contextMenus.create({contexts:["all"], parentId:"parent", id:key, title:chrome.i18n.getMessage("menu_sub_#{key}")})
 
 onMessageHandler = (request, sender, sendResponse) ->
@@ -56,14 +56,15 @@ renderPreviewContextMenus = ->
 	@previewAmount = Math.min(@links.length, LINK_PREVIEW_THRESHOLD)
 	if @previewAmount > 0
 		chrome.contextMenus.create({contexts:["all"], parentId:"parent", id:"preview_separator", type:"separator"})
-		for i in [0..@previewAmount]
+		for i in [0...@previewAmount]
 			@previewLinks["preview#{i}"] = @links[i]
 			chrome.contextMenus.create({contexts:["all"], parentId:"parent", id:"preview#{i}", title:@links[i]})
 
 clearPreviewContextMenus = ->
-	chrome.contextMenus.remove("preview_separator")
-	for i in [0..@previewAmount]
-		chrome.contextMenus.remove("preview#{i}")
+	if @previewAmount > 0
+		chrome.contextMenus.remove("preview_separator")
+		for i in [0...@previewAmount]
+			chrome.contextMenus.remove("preview#{i}")
 	@previewAmount = 0
 	@previewLinks = {}
 
