@@ -23,6 +23,9 @@
 document.body.onmouseup = (event) ->
 	chrome.extension.sendMessage({type:"verifySelection", links:getLinksFromSelection()})
 
+document.body.onkeyup = (event) ->
+	chrome.extension.sendMessage({type:"verifySelection", links:getLinksFromSelection()})
+
 getLinksFromSelection = ->
 	selection = window.getSelection()
 	LinkGrabber.fromSelection(selection).allLinks()
