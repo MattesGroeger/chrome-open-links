@@ -3,6 +3,7 @@ path     = require 'path'
 wrench   = require 'wrench'
 manifest = require './manifest'
 spawn    = require('child_process').spawn
+execFile = require('child_process').execFile
 
 ROOT_PATH               = __dirname
 COFFEESCRIPTS_PATH      = path.join(ROOT_PATH, '/src')
@@ -115,37 +116,41 @@ task 'minify', 'Minify the js files using Google Closure Compiler', ->
 	minify_files()
 
 task 'deploy', 'Packages a zip version of the extension, ready for Chrome Web Store upload', ->
-	manifest.version = '1.0.0'
-	outputFilename = './tmp/manifest.json'
+	releaseName = "open-links-extension-#{manifest.version}"
+	outputFolder = "./#{releaseName}"
 
 	# clean up
-	rm_dir('./tmp')
-	fs.mkdirSync('./tmp')
-	fs.mkdirSync('./tmp/assets')
-	fs.mkdirSync('./tmp/build')
+	rm_dir(outputFolder)
+	fs.mkdirSync(outputFolder)
+	fs.mkdirSync("#{outputFolder}/assets")
+	fs.mkdirSync("#{outputFolder}/build")
 	
 	# copy license
-	copy_file("LICENSE.txt", "tmp/LICENSE.txt")
+	copy_file("LICENSE.txt", "#{outputFolder}/LICENSE.txt")
 	
 	# copy locales
-	wrench.copyDirSyncRecursive("_locales", "tmp/_locales")
-	console.log("locales copied to 'tmp/_locales'")
+	wrench.copyDirSyncRecursive("_locales", "#{outputFolder}/_locales")
+	console.log("locales copied to '#{outputFolder}/_locales'")
 	
 	# copy assets
-	copy_file("assets/icon16.png", "tmp/assets/icon16.png")
-	copy_file("assets/icon48.png", "tmp/assets/icon48.png")
-	copy_file("assets/icon128.png", "tmp/assets/icon128.png")
-	console.log("assets copied to 'tmp/assets'")
+	copy_file("assets/icon16.png", "#{outputFolder}/assets/icon16.png")
+	copy_file("assets/icon48.png", "#{outputFolder}/assets/icon48.png")
+	copy_file("assets/icon128.png", "#{outputFolder}/assets/icon128.png")
+	console.log("assets copied to '#{outputFolder}/assets'")
 	
 	# copy minified js
 	minify_files(->
 		for file in files_in_dir("build", /\.min\.js$/)
-			copy_file(file, "tmp/#{file}")
-			console.log("moved '#{file}' into '.tmp' folder")
+			copy_file(file, "#{outputFolder}/#{file}")
+			console.log("moved '#{file}' into '#{outputFolder}' folder")
 		manifest["content_scripts"][0]["js"] = ["build/link_grabber.min.js","build/content.min.js"]
 		manifest["background"]["scripts"] = ["build/links.min.js"]
 	
 		# write manifest
-		fs.writeFileSync(outputFilename, JSON.stringify(manifest, null, 4))
+		fs.writeFileSync("#{outputFolder}/manifest.json", JSON.stringify(manifest, null, 4))
 		console.log("new manifest.json written")
+		
+		# zip contents
+		execFile('zip', ["-r", "release/#{releaseName}.zip", outputFolder])
+		rm_dir(outputFolder)
 	)
