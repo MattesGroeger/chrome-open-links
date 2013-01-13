@@ -1,10 +1,10 @@
 {
 	"product_name": {
-		"message": "Öffne alle Links",
+		"message": "Ausgewählte Links öffnen",
 		"description": "Name der Erweiterung"
 	},
 	"product_description": {
-		"message": "Öffnet alle Links innerhalb der aktuellen Auswahl in neuen Tabs.",
+		"message": "Öffnet ausgewählte Links mittels Kontext-Menü in neuen Tabs.",
 		"description": "Beschreibung der Erweiterung"
 	},
 	"selection_alert_tooManyLinks": {

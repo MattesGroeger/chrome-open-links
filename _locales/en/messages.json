@@ -1,10 +1,10 @@
 {
 	"product_name": {
-		"message": "Open All Links",
+		"message": "Open Selected Links",
 		"description": "Name of the extension"
 	},
 	"product_description": {
-		"message": "Opens all links within the currently selected area in new tabs.",
+		"message": "Opens selected links in new tabs using the context menu.",
 		"description": "Description of the extension"
 	},
 	"selection_alert_tooManyLinks": {
@@ -42,7 +42,7 @@
 		}
 	},
 	"menu_sub_video": {
-		"message": "Video ($amount$)",
+		"message": "Videos ($amount$)",
 		"description": "Sub context menu label that leads to open video only",
 		"placeholders": {
 			"amount": {
