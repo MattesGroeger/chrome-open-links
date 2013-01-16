@@ -14,7 +14,7 @@ This [Google Chrome](http://www.google.com/chrome) Extension allows you to open 
 
 ## How to use
 
-Install the extension from the [Chrome Web Store](https://chrome.google.com/webstore/) (coming soon). After installation make sure to restart Chrome or reload the current websites. 
+Install the extension from the [Chrome Web Store](https://chrome.google.com/webstore/detail/open-selected-links/cbmiafnaglmnkhnohfdkdgaohdhndkjp). After installation make sure to restart Chrome or reload the current websites. 
 
 Select some part of a webpage that contains links. Right click and choose 'Open selected links' -> 'All' from the context menu. They will now open to the right of your current tab.
 
