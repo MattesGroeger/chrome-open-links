@@ -1,25 +1,37 @@
-Chrome Extension: "Open Links"
-===
+![Extension Icon](https://raw.github.com/MattesGroeger/chrome-open-links/master/assets/icon128.png)
 
-This extension allows to open all links within a selected area on a website. Links will open as new tabs besides the current one.
+# Open Selected Links (Chrome Extension)
 
-Installation
-===
+This [Google Chrome](http://www.google.com/chrome) Extension allows you to open all links within a selected area on a website.
 
-The extension is not available via the Chrome Web Store, yet. Therefore you have to install it from your file system.
+## Features
 
-1. Clone this project into a folder of your choice
-2. Open the Chrome Extension preference pane: *Window* > *Extensions*
-3. Enable Developer mode by activating the checkbox besides *Developer mode*
-4. Now click the *Load unpacked extension...* button and select the local extension folder
-5. Restart Chrome or reload the already open websites in order to use the extension
+* Open all links within a selection as new tabs
+* Usage via context menu – no annoying icon in chrome bar :)
+* Filter links for images, videos or audio
+* See the first 10 link urls
+* Finds html links as well as plain urls
 
-Usage
-===
+## How to use
 
-Select parts of a website that contain hyperlinks. Right click and select "Open all selected links" from the context menu. Every link will open as new tab now.
+Install the extension from the [Chrome Web Store](https://chrome.google.com/webstore/) (coming soon). After installation make sure to restart Chrome or reload the current websites. 
 
-Contribution
-===
+Select some part of a webpage that contains links. Right click and choose 'Open selected links' -> 'All' from the context menu. They will now open to the right of your current tab.
 
-Contribution is very welcome. Localizing the extension to more languages would be really helpfull as well. You can find the currently supported locales in the `_locales` folder.
+The context menu shows you already how many pages will be opened. It also shows the first 10 urls.
+
+## Changelog
+
+### 1.0.0
+
+* [Feature] Context menu integration
+* [Feature] Open all selected links and plain urls
+* [Feature] Filter links for images, video and audio
+* [Feature] Preview the amount of links
+* [Feature] Preview the first 10 links as full urls
+
+## Get involved
+
+Feedback is very welcome. If you find bugs please [report them here](https://github.com/MattesGroeger/chrome-open-links/issues). 
+
+I'm also happy to accept your pull requests. Localizing the extension to more languages would be really helpfull as well. You can find the currently supported locales in [the '_locales' folder](https://github.com/MattesGroeger/chrome-open-links/tree/master/_locales).
