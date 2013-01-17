@@ -22,7 +22,7 @@ The context menu shows you already how many pages will be opened. It also shows 
 
 ## Changelog
 
-### 1.0.0
+### 1.0.0 (2013/01/16)
 
 * [Feature] Context menu integration
 * [Feature] Open all selected links and plain urls
