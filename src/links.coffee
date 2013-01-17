@@ -39,6 +39,7 @@ onInstalledHandler = ->
 	chrome.contextMenus.create({contexts:["all"], parentId:"parent", type:"separator"})
 	for own key, value of FILTERS when key != "all"
 		chrome.contextMenus.create({contexts:["all"], parentId:"parent", id:key, title:chrome.i18n.getMessage("menu_sub_#{key}")})
+	updateContextMenus()
 
 onMessageHandler = (request, sender, sendResponse) ->
 	if request.type == "verifySelection"
