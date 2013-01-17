@@ -2,7 +2,7 @@
 
 # Open Selected Links (Chrome Extension)
 
-This [Google Chrome](http://www.google.com/chrome) Extension allows you to open all links within a selected area on a website.
+This [Google Chrome Extension](https://chrome.google.com/webstore/detail/open-selected-links/cbmiafnaglmnkhnohfdkdgaohdhndkjp) allows you to open all links within a selected area on a website.
 
 ## Features
 
