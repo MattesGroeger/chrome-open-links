@@ -21,7 +21,9 @@
 #= require LinkGrabber
 
 document.body.onmouseup = (event) ->
-	chrome.extension.sendMessage({type:"verifySelection", links:getLinksFromSelection()})
+	window.setTimeout(->
+		chrome.extension.sendMessage({type:"verifySelection", links:getLinksFromSelection()})
+	, 0)
 
 document.body.onkeyup = (event) ->
 	chrome.extension.sendMessage({type:"verifySelection", links:getLinksFromSelection()})
