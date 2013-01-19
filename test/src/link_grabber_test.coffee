@@ -13,6 +13,11 @@ describe 'LinkGrabber', ->
 			links.should.have.lengthOf(1)
 			links[0].should.equal("http://bar/")
 		
+		it 'should ignore mailto links', ->
+			links = LinkGrabber.fromHTMLString('<a href="mailto:foo@bar.com">mail</a> http://bar/').allLinks()
+			links.should.have.lengthOf(1)
+			links[0].should.equal("http://bar/")
+		
 		it 'should ignore duplicate urls', ->
 			links = LinkGrabber.fromHTMLString('<a href="http://foo/"></a> <a href="http://foo/"></a>').allLinks()
 			links.should.have.lengthOf(1)

@@ -18,6 +18,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+BLACKLIST = [/^mailto\:/i]
+
 class window.LinkGrabber
 
 	constructor: (@html, @selection) ->
@@ -42,8 +44,14 @@ class window.LinkGrabber
 	
 	gatherHTMLLinks: ->
 		aTags = @html.getElementsByTagName "a"
-		for tag in aTags when tag.href
+		for tag in aTags when tag.href and not this.onBlackList(tag.href)
 			@links[tag.href] = true
+	
+	onBlackList: (link) ->
+		for pattern in BLACKLIST
+			if link.match(pattern)
+				return true
+		return false
 	
 	gatherPlainLinks: ->
 		regex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig
