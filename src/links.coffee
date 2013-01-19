@@ -20,7 +20,6 @@
 
 LINK_WARNING_AMOUNT = 20
 LINK_PREVIEW_THRESHOLD = 10
-BLACKLIST = /^javascript/i
 FILTERS = {
 						all: ".*",
 						image: "\.(jpg|jepg|png|gif|svg)$",
@@ -70,7 +69,7 @@ clearPreviewContextMenus = ->
 	@previewLinks = {}
 
 filterLinks = (filter, links) ->
-	link for link in links when link.match(new RegExp(filter, "i")) and not link.match(BLACKLIST)
+	link for link in links when link.match(new RegExp(filter, "i"))
 
 updateContextMenu = (id) -> 
 	links = @linksForFilter[id]

@@ -18,6 +18,11 @@ describe 'LinkGrabber', ->
 			links.should.have.lengthOf(1)
 			links[0].should.equal("http://bar/")
 		
+		it 'should ignore javascript links', ->
+			links = LinkGrabber.fromHTMLString('<a href="javascript:console.log(\'foo\')">javascript</a> http://bar/').allLinks()
+			links.should.have.lengthOf(1)
+			links[0].should.equal("http://bar/")
+		
 		it 'should ignore duplicate urls', ->
 			links = LinkGrabber.fromHTMLString('<a href="http://foo/"></a> <a href="http://foo/"></a>').allLinks()
 			links.should.have.lengthOf(1)

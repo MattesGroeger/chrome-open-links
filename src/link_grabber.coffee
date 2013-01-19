@@ -18,7 +18,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-BLACKLIST = [/^mailto\:/i]
+BLACKLIST = [/^mailto\:/i, /^javascript/i]
 
 class window.LinkGrabber
 
