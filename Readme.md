@@ -22,6 +22,12 @@ The context menu shows you already how many pages will be opened. It also shows 
 
 ## Changelog
 
+### 1.0.1 (tbd)
+
+* [Bugfix] Initialize context menu properly
+* [Bugfix] Sometimes the context menu doesn't update
+* [Bugfix] Ignore mailto links
+
 ### 1.0.0 (2013/01/16)
 
 * [Feature] Context menu integration
