@@ -22,7 +22,7 @@ The context menu shows you already how many pages will be opened. It also shows 
 
 ## Changelog
 
-### 1.0.1 (tbd)
+### 1.0.1 (2013/01/20)
 
 * [Bugfix] Initialize context menu properly
 * [Bugfix] Sometimes the context menu doesn't update
