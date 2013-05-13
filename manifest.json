@@ -1,6 +1,6 @@
 {
   "name": "__MSG_product_name__",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "manifest_version": 2,
   "default_locale": "en",
   "description": "__MSG_product_description__",
