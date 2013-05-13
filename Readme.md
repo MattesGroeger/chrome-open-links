@@ -22,6 +22,10 @@ The context menu shows you already how many pages will be opened. It also shows 
 
 ## Changelog
 
+### 1.0.2 (2013/05/13)
+
+* [Bugfix] Extension still works after restarting the browser
+
 ### 1.0.1 (2013/01/20)
 
 * [Bugfix] Initialize context menu properly
