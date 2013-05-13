@@ -32,7 +32,7 @@ FILTERS = {
 @previewAmount = 0
 @previewLinks = {}
 
-onInstalledHandler = ->
+createContextMenu = ->
 	chrome.contextMenus.create({contexts:["all"], id:"parent", title:chrome.i18n.getMessage("menu_main")})
 	chrome.contextMenus.create({contexts:["all"], parentId:"parent", id:"all", title:chrome.i18n.getMessage("menu_sub_all")})
 	chrome.contextMenus.create({contexts:["all"], parentId:"parent", type:"separator"})
@@ -89,6 +89,6 @@ onClickHandler = (info, tab) ->
 openLink = (url, currentTab) ->
 	chrome.tabs.create({url:url,index:currentTab.index+1})
 
-chrome.runtime.onInstalled.addListener(onInstalledHandler)
+createContextMenu()
 chrome.extension.onMessage.addListener(onMessageHandler)
 chrome.contextMenus.onClicked.addListener(onClickHandler)
