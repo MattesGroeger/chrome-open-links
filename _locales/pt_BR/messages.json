@@ -9,7 +9,7 @@
 	},
 	"selection_alert_tooManyLinks": {
 		"message": "Você abrirá $amount$ links. Tem certeza que deseja abrir todos ao mesmo tempo?",
-		"description": "Avisa ao usuário que abrir vários links pode tornar o computador devagar ou causar um erro",
+		"description": "Avisa ao usuário que abrir vários links pode tornar o computador devagar ou causar erros",
 		"placeholders": {
 			"amount": {
 				"content": "$1",
