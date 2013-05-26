@@ -1,0 +1,64 @@
+{
+	"product_name": {
+		"message": "Abrir links selecionados",
+		"description": "Nome da extensão"
+	},
+	"product_description": {
+		"message": "Abre links selecionados em novas abas usando o menu de contexto.",
+		"description": "Description of the extension"
+	},
+	"selection_alert_tooManyLinks": {
+		"message": "Você abrirá $amount$ links. Tem certeza que deseja abrir todos ao mesmo tempo?",
+		"description": "Avisa ao usuário que abrir vários links pode tornar o computador devagar ou causar um erro",
+		"placeholders": {
+			"amount": {
+				"content": "$1",
+				"example": "20"
+			}
+		}
+	},
+	"menu_main": {
+		"message": "Abrir links selecionados",
+		"description": "Menu de contexto que abre os sub-menus"
+	},
+	"menu_sub_all": {
+		"message": "Todos ($amount$)",
+		"description": "Sub menu que abre todos os links",
+		"placeholders": {
+			"amount": {
+				"content": "$1",
+				"example": "2"
+			}
+		}
+	},
+	"menu_sub_image": {
+		"message": "Imagens ($amount$)",
+		"description": "Sub menu que abre somente imagens",
+		"placeholders": {
+			"amount": {
+				"content": "$1",
+				"example": "2"
+			}
+		}
+	},
+	"menu_sub_video": {
+		"message": "Vídeos ($amount$)",
+		"description": "Sub menu que abre somente vídeos",
+		"placeholders": {
+			"amount": {
+				"content": "$1",
+				"example": "2"
+			}
+		}
+	},
+	"menu_sub_audio": {
+		"message": "Audio ($amount$)",
+		"description": "Sub menu que abre somente audio",
+		"placeholders": {
+			"amount": {
+				"content": "$1",
+				"example": "2"
+			}
+		}
+	}
+}
