@@ -1,6 +1,6 @@
 {
   "name": "__MSG_product_name__",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "manifest_version": 2,
   "default_locale": "en",
   "description": "__MSG_product_description__",
@@ -16,7 +16,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["http://*/*", "https://*/*"],
+      "matches": ["http://*/*", "https://*/*", "file:///*"],
       "js": ["build/link_grabber.js","build/content.js"]
     }
   ]
