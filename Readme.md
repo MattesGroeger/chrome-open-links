@@ -22,6 +22,10 @@ The context menu shows you already how many pages will be opened. It also shows 
 
 ## Changelog
 
+### 1.0.4 (2014/05/17)
+
+* [Added] Support for local files
+
 ### 1.0.3 (2013/05/26)
 
 * [Added] pt_BR localization
