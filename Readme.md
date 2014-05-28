@@ -14,13 +14,17 @@ This [Google Chrome Extension](https://chrome.google.com/webstore/detail/open-se
 
 ## How to use
 
-Install the extension from the [Chrome Web Store](https://chrome.google.com/webstore/detail/open-selected-links/cbmiafnaglmnkhnohfdkdgaohdhndkjp). After installation make sure to restart Chrome or reload the current websites. 
+Install the extension from the [Chrome Web Store](https://chrome.google.com/webstore/detail/open-selected-links/cbmiafnaglmnkhnohfdkdgaohdhndkjp). After installation make sure to restart Chrome or reload the current websites.
 
 Select some part of a webpage that contains links. Right click and choose 'Open selected links' -> 'All' from the context menu. They will now open to the right of your current tab.
 
 The context menu shows you already how many pages will be opened. It also shows the first 10 urls.
 
 ## Changelog
+
+### 1.0.5 (2014/05/28)
+
+* [Added] hu localization
 
 ### 1.0.4 (2014/05/17)
 
@@ -50,6 +54,6 @@ The context menu shows you already how many pages will be opened. It also shows 
 
 ## Get involved
 
-Feedback is very welcome. If you find bugs please [report them here](https://github.com/MattesGroeger/chrome-open-links/issues). 
+Feedback is very welcome. If you find bugs please [report them here](https://github.com/MattesGroeger/chrome-open-links/issues).
 
 I'm also happy to accept your pull requests. Localizing the extension to more languages would be really helpfull as well. You can find the currently supported locales in [the '_locales' folder](https://github.com/MattesGroeger/chrome-open-links/tree/master/_locales).
