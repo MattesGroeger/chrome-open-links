@@ -1,0 +1,64 @@
+{
+   "menu_main": {
+      "description": "Főmenü, mely almenüre mutat",
+      "message": "Ugrás a linkekre"
+   },
+   "menu_sub_all": {
+      "description": "Almenü, mely az összes linket megnyitja",
+      "message": "Összes ($amount$)",
+      "placeholders": {
+         "amount": {
+            "content": "$1",
+            "example": "2"
+         }
+      }
+   },
+   "menu_sub_audio": {
+      "description": "Almenü, mely az audió linkeket nyitja meg",
+      "message": "Audió ($amount$)",
+      "placeholders": {
+         "amount": {
+            "content": "$1",
+            "example": "2"
+         }
+      }
+   },
+   "menu_sub_image": {
+      "description": "Almenü, mely a képek linkjeit nyitja meg",
+      "message": "Kép ($amount$)",
+      "placeholders": {
+         "amount": {
+            "content": "$1",
+            "example": "2"
+         }
+      }
+   },
+   "menu_sub_video": {
+      "description": "Almenü, mely a videós linkekre mutat",
+      "message": "Videó ($amount$)",
+      "placeholders": {
+         "amount": {
+            "content": "$1",
+            "example": "2"
+         }
+      }
+   },
+   "product_description": {
+      "description": "A bővítmény leírása",
+      "message": "Hivatkozások megnyitása a helyi menü segítségével."
+   },
+   "product_name": {
+      "description": "A kiterjesztés neve",
+      "message": "Kijelölt hivatkozások megnyitása"
+   },
+   "selection_alert_tooManyLinks": {
+      "description": "Figyelmeztetés több link megnyitása előtt",
+      "message": "Ez összesen $amount$ link. Biztos abban, hogy mindet egyszerre nyitja meg?",
+      "placeholders": {
+         "amount": {
+            "content": "$1",
+            "example": "20"
+         }
+      }
+   }
+}
